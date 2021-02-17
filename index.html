@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+        integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+        rel="stylesheet"/>
+  <link href="custom.css" rel="stylesheet">
+  <title>Book List</title>
+</head>
+<body>
+<main class="container">
+  <h1>Add Book</h1>
+  <p class="twelve columns" id="msg-p">Alert</p>
+  <form>
+    <div>
+      <label for="book-title">Book Title</label>
+      <input class="twelve columns" id="book-title" type="text">
+    </div>
+    <div>
+      <label for="author">Book Title</label>
+      <input class="twelve columns" id="author" type="text">
+    </div>
+    <div>
+      <label for="isbn">Book Title</label>
+      <input class="twelve columns" id="isbn" type="text">
+    </div>
+    <div>
+      <button class="button button-primary" id="btn-submit">Add book</button>
+    </div>
+
+  </form>
+  <br>
+  <table>
+    <tr>
+      <th class="four columns">Title</th>
+      <th class="four columns">Author</th>
+      <th class="four columns">ISBN</th>
+    </tr>
+  </table>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
