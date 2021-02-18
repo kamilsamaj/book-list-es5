@@ -11,19 +11,19 @@
 <body>
 <main class="container">
   <h1>Add Book</h1>
-  <p class="twelve columns" id="msg-p">Alert</p>
-  <form>
+  <p class="u-full-width" id="msg-p">Alert</p>
+  <form id="main-form">
     <div>
-      <label for="book-title">Book Title</label>
-      <input class="twelve columns" id="book-title" type="text">
+      <label for="book-title">Title</label>
+      <input class="u-full-width" id="book-title" type="text">
     </div>
     <div>
-      <label for="author">Book Title</label>
-      <input class="twelve columns" id="author" type="text">
+      <label for="author">Author</label>
+      <input class="u-full-width" id="author" type="text">
     </div>
     <div>
-      <label for="isbn">Book Title</label>
-      <input class="twelve columns" id="isbn" type="text">
+      <label for="isbn">ISBN</label>
+      <input class="u-full-width" id="isbn" type="text">
     </div>
     <div>
       <button class="button button-primary" id="btn-submit">Add book</button>
@@ -31,12 +31,18 @@
 
   </form>
   <br>
-  <table>
+  <table class="u-full-width">
+    <thead>
     <tr>
-      <th class="four columns">Title</th>
-      <th class="four columns">Author</th>
-      <th class="four columns">ISBN</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>ISBN</th>
+      <th></th>
     </tr>
+    </thead>
+    <tbody id="book-list">
+
+    </tbody>
   </table>
 </main>
 
