@@ -27,18 +27,34 @@ UI.prototype.addBookToList = function (book) {
   list.appendChild(row);
 };
 
+UI.prototype.showAlert = function (msg, bgColor) {
+  const msgEl = document.getElementById("msg-p");
+  msgEl.innerText = msg;
+  msgEl.style.backgroundColor = bgColor;
+  msgEl.style.color = 'white';
+  msgEl.style.display = 'block';
+  msgEl.style.padding = '1.5rem';
+
+  setTimeout(() => {
+    msgEl.style.display = 'none';
+  }, 2000);
+};
 
 document.getElementById('main-form').addEventListener('submit', e => {
+  const ui = new UI();
   // form UI elements
   const title = document.getElementById('book-title').value,
     author = document.getElementById('author').value,
     isbn = document.getElementById('isbn').value;
 
-  const book = new Book(title, author, isbn);
+  // validate inputs
+  if (title === '' || author === '' || isbn === '') {
+    ui.showAlert('Input value is empty', 'red');
+  } else {
+    const book = new Book(title, author, isbn);
 
-  const ui = new UI();
-
-  //Add book to list
-  ui.addBookToList(book);
+    //Add book to list
+    ui.addBookToList(book);
+  }
   e.preventDefault();
 });
