@@ -21,9 +21,11 @@ class UI {
     <td><a qhref="javascript:void(0)" style="text-decoration: none" class="del-btn">X</a></td>
   `;
 
+    // event handler for delete item button
     row.addEventListener('click', e => {
       if (e.target.classList.contains('del-btn')) {
         e.target.parentElement.parentElement.remove();
+        Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
       }
     });
     list.appendChild(row);
@@ -43,6 +45,50 @@ class UI {
   }
 }
 
+class Store {
+  static getBooks() {
+    let books;
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+    return books;
+  }
+
+  static displayBooks() {
+    const books = Store.getBooks();
+
+    books.forEach(book => {
+      const ui = new UI;
+
+      ui.addBookToList(book);
+    });
+  }
+
+  static addBook(book) {
+    const books = Store.getBooks();
+    books.push(book);
+
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+
+  static removeBook(isbn) {
+    const books = Store.getBooks();
+
+    books.forEach((book, index) => {
+      if (book.isbn === isbn) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+}
+
+// DOM Load Event
+document.addEventListener('DOMContentLoaded', Store.displayBooks);
+
 document.getElementById('main-form').addEventListener('submit', e => {
   const ui = new UI();
   // form UI elements
@@ -56,8 +102,11 @@ document.getElementById('main-form').addEventListener('submit', e => {
   } else {
     const book = new Book(title, author, isbn);
 
-    //Add book to list
+    // Add book to list
     ui.addBookToList(book);
+
+    // Add book to localStorage
+    Store.addBook(book);
   }
   e.preventDefault();
 });
